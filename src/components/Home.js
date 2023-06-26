@@ -5,20 +5,20 @@ import { toast } from 'react-toastify';
 
 const Home = () => {
 
-    const contacts = useSelector(state => state);
+    const contacts = useSelector(state => state); // Get the contacts from the Redux store
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); // Dispatch actions to update the Redux store
 
     const deleteContact = (id) => {
-        dispatch({ type: 'DELETE_CONTACT', payload: id });
-        toast.success('Contact deleted successfully!');
+        dispatch({ type: 'DELETE_CONTACT', payload: id }); // Dispatch the DELETE_CONTACT action with the contact id as payload
+        toast.success('Contact deleted successfully!'); // Display a success toast message
     }
 
     return (
         <div className='container'>
             <div className='row'>
                 <div className='col-md-12 my-5 text-center'>
-                    <Link to='/add' className='btn btn-outline-dark'>Add Contact</Link>
+                    <Link to='/add' className='btn btn-outline-dark'>Add Contact</Link> {/* Link to the AddContact component */}
                 </div>
                 <div className='col-md-10 mx-auto'>
                     <table className='table table-hover'>
@@ -40,8 +40,8 @@ const Home = () => {
                                         <td>{contact.email}</td>
                                         <td>{contact.number}</td>
                                         <td>
-                                            <Link to={`/edit/${contact.id}`} className='btn btn-small btn-primary me-2'>Edit</Link>
-                                            <button type='button' onClick={() => deleteContact(contact.id)} className='btn btn-small btn-danger'>Delete</button>
+                                            <Link to={`/edit/${contact.id}`} className='btn btn-small btn-primary me-2'>Edit</Link> {/* Link to the EditContact component */}
+                                            <button type='button' onClick={() => deleteContact(contact.id)} className='btn btn-small btn-danger'>Delete</button> {/* Button to delete the contact */}
                                         </td>
                                     </tr>
                                 ))
@@ -50,7 +50,7 @@ const Home = () => {
                     </table>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 

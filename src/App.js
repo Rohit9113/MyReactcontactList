@@ -10,7 +10,9 @@ import { useDispatch } from "react-redux";
 
 const App = () => {
     const dispatch = useDispatch();
+
     useEffect(() => {
+        // Fetch data from the API and dispatch the action to store the contacts
         const fetchData = async () => {
             try {
                 const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -26,18 +28,20 @@ const App = () => {
                 console.error("Error fetching contacts:", error);
             }
         };
+
+        // Call the fetchData function when the component mounts
         fetchData();
     }, [dispatch]);
-
 
     return (
         <div className="App">
             <ToastContainer />
             <Navbar />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/add" element={<AddContact />} />
-                <Route path="/edit/:id" element={<EditContact />} />
+                {/* Define the routes for different components */}
+                <Route path="/" element={<Home />} /> {/* Home component */}
+                <Route path="/add" element={<AddContact />} /> {/* AddContact component */}
+                <Route path="/edit/:id" element={<EditContact />} /> {/* EditContact component */}
             </Routes>
         </div>
     );
